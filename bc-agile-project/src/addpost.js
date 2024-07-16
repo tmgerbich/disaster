@@ -4,19 +4,18 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export default function AddPost() { 
-    const [id, setId] = useState('');
-    const [post, setPost] = useState('');
-    const [posts, setPosts] = useState([]);
+export default function AddPost({ addPost }) {
+  const [id, setId] = useState('');
+  const [post, setPost] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setPosts([...posts, { id, post }]);  //this should get written to storage instead
-        setId('');
-        setPost('');
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addPost(id, post);
+    setId('');
+    setPost('');
+  };
 
-    return (
+  return (
     <Box
       component="form"
       sx={{
@@ -46,15 +45,6 @@ export default function AddPost() {
         onChange={(e) => setPost(e.target.value)}
       />
       <Button variant="contained" type="submit">Submit</Button>
-
-      {/* this will later be in another function and get pulled from storage */}
-      <div>{posts.map((post, index) => (
-        <div key={index}>
-            <h3>User ID: {post.id}</h3>
-            <p>{post.post}</p>
-        </div>
-      ))}
-      </div>
     </Box>
   );
 }
