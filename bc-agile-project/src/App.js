@@ -1,7 +1,10 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import AddPost from './addpost'; 
-import PrimarySearchAppBar from './searchnav';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import AddPost from "./addpost";
+import PrimarySearchAppBar from "./searchnav";
+import Sidebar from "./sidebar1";
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import ShowPosts from './showposts';
 
 function App() {
@@ -38,8 +41,20 @@ function App() {
   return (
     <div>
       <PrimarySearchAppBar />
-      <AddPost addPost={addPost} />
+      <Container maxWidth="lg" style={{ marginTop: '60px' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3}>
+            <Sidebar />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AddPost addPost={addPost} />
       <ShowPosts posts={posts} editPost={editPost} deletePost={deletePost} />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Sidebar />
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }
