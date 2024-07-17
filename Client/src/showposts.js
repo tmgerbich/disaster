@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 export default function ShowPosts({ posts, editPost, deletePost }) {
 
   const handleEdit = (index) => {
-    const updatedPost = prompt("Edit your post:", posts[index].post);
+    const updatedPost = prompt("Edit your post:", posts[index].body);
     if (updatedPost) {
       editPost(index, { ...posts[index], post: updatedPost });
     }
@@ -16,28 +16,24 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
     deletePost(index);
   };
 
-
   return (
     <Box
-      component="form"
+      component="div"
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         '& > :not(style)': { m: 1, width: '50ch' }
       }}
-      noValidate
-      autoComplete="off">
-      <div>
-        ${posts.map((post, index) => (
-          <div key={index}>
-            <h3>User ID: {post.id}</h3>
-            <p>{post.post}</p>
-            <Button onClick={() => handleEdit(index)}>Edit</Button>
-            <Button onClick={() => handleDelete(index)}>Delete</Button>
-          </div>
-        ))}
-      </div>
+    >
+      {posts.map((post, index) => (
+        <div key={index}>
+          <h3>User ID: {post.userId}</h3>
+          <p>{post.body}</p>
+          <Button onClick={() => handleEdit(index)}>Edit</Button>
+          <Button onClick={() => handleDelete(index)}>Delete</Button>
+        </div>
+      ))}
     </Box>
   );
 }
