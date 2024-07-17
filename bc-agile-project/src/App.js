@@ -4,7 +4,9 @@ import AddPost from "./addpost";
 import PrimarySearchAppBar from "./searchnav";
 import Sidebar1 from "./sidebar1";
 import Sidebar2 from "./sidebar2";
+import ShowPosts from "./showposts";
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
   }
 
   const loadPosts = () => {
-    setPosts(JSON.parse(localStorage.getItem('posts')))
+    setPosts(JSON.parse(localStorage.getItem('posts'))||[]);
   }
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function App() {
 , [posts]) //rerender when there is a change in posts
 
   return (
-    <Box sx={{ bgcolor: 'black', minHeight: '100vh' }}>
+    <div>
       <PrimarySearchAppBar />
       <Container maxWidth="lg" style={{ marginTop: '60px' }}>
         <Grid container spacing={2}>
@@ -55,7 +57,7 @@ function App() {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </div>
   );
 }
 

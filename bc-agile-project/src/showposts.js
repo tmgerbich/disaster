@@ -24,13 +24,12 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        '& > :not(style)': { m: 1, width: '50ch' },
+        '& > :not(style)': { m: 1, width: '50ch' }
       }}
       noValidate
-      autoComplete="off"
-    >
+      autoComplete="off">
       <div>
-        {posts.map((post, index) => (
+        ${posts.map((post, index) => (
           <div key={index}>
             <h3>User ID: {post.id}</h3>
             <p>{post.post}</p>
